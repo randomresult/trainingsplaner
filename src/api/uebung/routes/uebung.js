@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * dauer router
+ * uebung router
  */
 
 const { createCoreRouter } = require('@strapi/strapi').factories;
 
-module.exports = createCoreRouter('api::dauer.dauer');
+module.exports = createCoreRouter('api::uebung.uebung');

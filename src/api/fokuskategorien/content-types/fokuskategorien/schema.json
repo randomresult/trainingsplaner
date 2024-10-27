@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "fokuskategoriens",
+  "info": {
+    "singularName": "fokuskategorien",
+    "pluralName": "fokuskategoriens",
+    "displayName": "trainingsschwerpunkt",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "trainings": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::training.training",
+      "mappedBy": "trainingsschwerpunkt"
+    },
+    "uebungs": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::uebung.uebung",
+      "mappedBy": "trainingsschwerpunkts"
+    },
+    "spielers": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::spieler.spieler",
+      "mappedBy": "trainingsschwerpunkts"
+    }
+  }
+}

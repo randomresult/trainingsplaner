@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "spielers",
+  "info": {
+    "singularName": "spieler",
+    "pluralName": "spielers",
+    "displayName": "Spieler",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Namen": {
+      "type": "string"
+    },
+    "spielerlevel": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::spielerlevel.spielerlevel",
+      "inversedBy": "spielers"
+    },
+    "trainingsschwerpunkts": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::fokuskategorien.fokuskategorien",
+      "inversedBy": "spielers"
+    }
+  }
+}

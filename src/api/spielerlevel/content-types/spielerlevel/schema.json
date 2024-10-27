@@ -19,6 +19,12 @@
     },
     "Level": {
       "type": "string"
+    },
+    "spielers": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::spieler.spieler",
+      "mappedBy": "spielerlevel"
     }
   }
 }

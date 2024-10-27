@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "uebungs",
+  "info": {
+    "singularName": "uebung",
+    "pluralName": "uebungs",
+    "displayName": "uebung",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "Beschreibung": {
+      "type": "blocks"
+    },
+    "hinweis": {
+      "type": "blocks"
+    },
+    "trainingsschwerpunkts": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::fokuskategorien.fokuskategorien",
+      "inversedBy": "uebungs"
+    },
+    "Minuten": {
+      "type": "integer"
+    },
+    "kategory": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::kategorie.kategorie",
+      "inversedBy": "uebungs"
+    },
+    "YoutubeID": {
+      "type": "string"
+    }
+  }
+}

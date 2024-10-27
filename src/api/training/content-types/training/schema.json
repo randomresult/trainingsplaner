@@ -30,14 +30,14 @@
       "target": "api::kategorie.kategorie",
       "inversedBy": "trainings"
     },
-    "dauer": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::dauer.dauer",
-      "inversedBy": "trainings"
-    },
     "hinweis": {
       "type": "blocks"
+    },
+    "trainingsschwerpunkt": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::fokuskategorien.fokuskategorien",
+      "inversedBy": "trainings"
     }
   }
 }

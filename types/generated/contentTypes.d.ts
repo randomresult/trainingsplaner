@@ -369,27 +369,33 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiDauerDauer extends Struct.CollectionTypeSchema {
-  collectionName: 'dauers';
+export interface ApiFokuskategorienFokuskategorien
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'fokuskategoriens';
   info: {
-    displayName: 'Dauer';
-    pluralName: 'dauers';
-    singularName: 'dauer';
+    description: '';
+    displayName: 'trainingsschwerpunkt';
+    pluralName: 'fokuskategoriens';
+    singularName: 'fokuskategorien';
   };
   options: {
-    draftAndPublish: false;
+    draftAndPublish: true;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::dauer.dauer'> &
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::fokuskategorien.fokuskategorien'
+    > &
       Schema.Attribute.Private;
-    Minuten: Schema.Attribute.Integer;
     Name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    spielers: Schema.Attribute.Relation<'manyToMany', 'api::spieler.spieler'>;
     trainings: Schema.Attribute.Relation<'oneToMany', 'api::training.training'>;
+    uebungs: Schema.Attribute.Relation<'manyToMany', 'api::uebung.uebung'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -420,6 +426,44 @@ export interface ApiKategorieKategorie extends Struct.CollectionTypeSchema {
     Name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     trainings: Schema.Attribute.Relation<'oneToMany', 'api::training.training'>;
+    uebungs: Schema.Attribute.Relation<'oneToMany', 'api::uebung.uebung'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSpielerSpieler extends Struct.CollectionTypeSchema {
+  collectionName: 'spielers';
+  info: {
+    description: '';
+    displayName: 'Spieler';
+    pluralName: 'spielers';
+    singularName: 'spieler';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::spieler.spieler'
+    > &
+      Schema.Attribute.Private;
+    Namen: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    spielerlevel: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::spielerlevel.spielerlevel'
+    >;
+    trainingsschwerpunkts: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::fokuskategorien.fokuskategorien'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -449,6 +493,7 @@ export interface ApiSpielerlevelSpielerlevel
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    spielers: Schema.Attribute.Relation<'oneToMany', 'api::spieler.spieler'>;
     training: Schema.Attribute.Relation<'manyToOne', 'api::training.training'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -472,7 +517,6 @@ export interface ApiTrainingTraining extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    dauer: Schema.Attribute.Relation<'manyToOne', 'api::dauer.dauer'>;
     hinweis: Schema.Attribute.Blocks;
     kategorie: Schema.Attribute.Relation<
       'manyToOne',
@@ -490,9 +534,54 @@ export interface ApiTrainingTraining extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::spielerlevel.spielerlevel'
     >;
+    trainingsschwerpunkt: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::fokuskategorien.fokuskategorien'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+  };
+}
+
+export interface ApiUebungUebung extends Struct.CollectionTypeSchema {
+  collectionName: 'uebungs';
+  info: {
+    description: '';
+    displayName: 'uebung';
+    pluralName: 'uebungs';
+    singularName: 'uebung';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Beschreibung: Schema.Attribute.Blocks;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    hinweis: Schema.Attribute.Blocks;
+    kategory: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::kategorie.kategorie'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::uebung.uebung'
+    > &
+      Schema.Attribute.Private;
+    Minuten: Schema.Attribute.Integer;
+    Name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    trainingsschwerpunkts: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::fokuskategorien.fokuskategorien'
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    YoutubeID: Schema.Attribute.String;
   };
 }
 
@@ -1001,10 +1090,12 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
-      'api::dauer.dauer': ApiDauerDauer;
+      'api::fokuskategorien.fokuskategorien': ApiFokuskategorienFokuskategorien;
       'api::kategorie.kategorie': ApiKategorieKategorie;
+      'api::spieler.spieler': ApiSpielerSpieler;
       'api::spielerlevel.spielerlevel': ApiSpielerlevelSpielerlevel;
       'api::training.training': ApiTrainingTraining;
+      'api::uebung.uebung': ApiUebungUebung;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

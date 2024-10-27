@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * dauer controller
+ * spieler controller
  */
 
 const { createCoreController } = require('@strapi/strapi').factories;
 
-module.exports = createCoreController('api::dauer.dauer');
+module.exports = createCoreController('api::spieler.spieler');

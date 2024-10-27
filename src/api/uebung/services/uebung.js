@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * dauer service
+ * uebung service
  */
 
 const { createCoreService } = require('@strapi/strapi').factories;
 
-module.exports = createCoreService('api::dauer.dauer');
+module.exports = createCoreService('api::uebung.uebung');
