@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "spielerlevels",
+  "info": {
+    "singularName": "spielerlevel",
+    "pluralName": "spielerlevels",
+    "displayName": "Spielerlevel"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "training": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::training.training",
+      "inversedBy": "spielerlevels"
+    },
+    "Level": {
+      "type": "string"
+    }
+  }
+}
