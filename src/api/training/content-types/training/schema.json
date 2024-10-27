@@ -4,7 +4,8 @@
   "info": {
     "singularName": "training",
     "pluralName": "trainings",
-    "displayName": "Training"
+    "displayName": "Training",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -34,6 +35,9 @@
       "relation": "manyToOne",
       "target": "api::dauer.dauer",
       "inversedBy": "trainings"
+    },
+    "hinweis": {
+      "type": "blocks"
     }
   }
 }

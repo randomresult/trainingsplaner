@@ -459,6 +459,7 @@ export interface ApiSpielerlevelSpielerlevel
 export interface ApiTrainingTraining extends Struct.CollectionTypeSchema {
   collectionName: 'trainings';
   info: {
+    description: '';
     displayName: 'Training';
     pluralName: 'trainings';
     singularName: 'training';
@@ -472,6 +473,7 @@ export interface ApiTrainingTraining extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     dauer: Schema.Attribute.Relation<'manyToOne', 'api::dauer.dauer'>;
+    hinweis: Schema.Attribute.Blocks;
     kategorie: Schema.Attribute.Relation<
       'manyToOne',
       'api::kategorie.kategorie'
