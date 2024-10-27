@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: trainingsplaner-strapi
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    healthCheckPath: /_health
+    autoDeploy: true
+    envVars:
+      - key: ADMIN_JWT_SECRET
+        generateValue: true
+      - key: API_TOKEN_SALT
+        generateValue: true
+      - key: APP_KEYS
+        generateValue: true
+      - key: DATABASE_CLIENT
+        value: mysql
+      - key: JWT_SECRET
+        generateValue: true
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: ~22.10.0
