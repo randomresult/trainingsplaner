@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "playerlevels",
+  "info": {
+    "singularName": "playerlevel",
+    "pluralName": "playerlevels",
+    "displayName": "Playerlevel"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    }
+  }
+}
