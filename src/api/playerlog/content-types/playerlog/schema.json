@@ -8,7 +8,7 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
@@ -35,6 +35,12 @@
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::player.player",
+      "inversedBy": "playerlogs"
+    },
+    "needworkonfocusarea": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::focusarea.focusarea",
       "inversedBy": "playerlogs"
     }
   }

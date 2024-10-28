@@ -44,6 +44,12 @@
       "relation": "manyToMany",
       "target": "api::team.team",
       "mappedBy": "players"
+    },
+    "traininggroups": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::traininggroup.traininggroup",
+      "mappedBy": "players"
     }
   }
 }

@@ -474,6 +474,10 @@ export interface ApiFocusareaFocusarea extends Struct.CollectionTypeSchema {
       'manyToOne',
       'api::playerlog.playerlog'
     >;
+    playerlogs: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::playerlog.playerlog'
+    >;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -515,6 +519,10 @@ export interface ApiPlayerPlayer extends Struct.CollectionTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     QTTR: Schema.Attribute.Integer;
     teams: Schema.Attribute.Relation<'manyToMany', 'api::team.team'>;
+    traininggroups: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::traininggroup.traininggroup'
+    >;
     trainings: Schema.Attribute.Relation<
       'manyToMany',
       'api::training.training'
@@ -564,7 +572,7 @@ export interface ApiPlayerlogPlayerlog extends Struct.CollectionTypeSchema {
     singularName: 'playerlog';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
@@ -577,6 +585,10 @@ export interface ApiPlayerlogPlayerlog extends Struct.CollectionTypeSchema {
       'api::playerlog.playerlog'
     > &
       Schema.Attribute.Private;
+    needworkonfocusarea: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::focusarea.focusarea'
+    >;
     Note: Schema.Attribute.RichText &
       Schema.Attribute.CustomField<
         'plugin::ckeditor5.CKEditor',
@@ -684,6 +696,36 @@ export interface ApiTrainingTraining extends Struct.CollectionTypeSchema {
       'manyToMany',
       'api::sequence.sequence'
     >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiTraininggroupTraininggroup
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'traininggroups';
+  info: {
+    displayName: 'Traininggroup';
+    pluralName: 'traininggroups';
+    singularName: 'traininggroup';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::traininggroup.traininggroup'
+    > &
+      Schema.Attribute.Private;
+    Name: Schema.Attribute.String;
+    players: Schema.Attribute.Relation<'manyToMany', 'api::player.player'>;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1204,6 +1246,7 @@ declare module '@strapi/strapi' {
       'api::sequence.sequence': ApiSequenceSequence;
       'api::team.team': ApiTeamTeam;
       'api::training.training': ApiTrainingTraining;
+      'api::traininggroup.traininggroup': ApiTraininggroupTraininggroup;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
