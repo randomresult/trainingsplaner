@@ -383,6 +383,10 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    exercises: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::exercise.exercise'
+    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -409,6 +413,10 @@ export interface ApiExerciseExercise extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    categories: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::category.category'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -442,6 +450,10 @@ export interface ApiExerciseExercise extends Struct.CollectionTypeSchema {
       'api::playerlevel.playerlevel'
     >;
     publishedAt: Schema.Attribute.DateTime;
+    sequences: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::sequence.sequence'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -612,6 +624,7 @@ export interface ApiPlayerlogPlayerlog extends Struct.CollectionTypeSchema {
 export interface ApiSequenceSequence extends Struct.CollectionTypeSchema {
   collectionName: 'sequences';
   info: {
+    description: '';
     displayName: 'Sequence';
     pluralName: 'sequences';
     singularName: 'sequence';
@@ -623,6 +636,10 @@ export interface ApiSequenceSequence extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    exercises: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::exercise.exercise'
+    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',

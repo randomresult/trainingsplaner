@@ -13,6 +13,12 @@
   "attributes": {
     "Name": {
       "type": "string"
+    },
+    "exercises": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::exercise.exercise",
+      "mappedBy": "categories"
     }
   }
 }

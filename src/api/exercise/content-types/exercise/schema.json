@@ -40,6 +40,18 @@
       "relation": "oneToMany",
       "target": "api::focusarea.focusarea",
       "mappedBy": "exercise"
+    },
+    "sequences": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::sequence.sequence",
+      "mappedBy": "exercises"
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "inversedBy": "exercises"
     }
   }
 }

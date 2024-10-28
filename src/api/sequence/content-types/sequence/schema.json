@@ -4,7 +4,8 @@
   "info": {
     "singularName": "sequence",
     "pluralName": "sequences",
-    "displayName": "Sequence"
+    "displayName": "Sequence",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -19,6 +20,12 @@
       "relation": "manyToMany",
       "target": "api::training.training",
       "mappedBy": "sequences"
+    },
+    "exercises": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::exercise.exercise",
+      "inversedBy": "sequences"
     }
   }
 }
