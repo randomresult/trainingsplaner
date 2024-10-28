@@ -4,7 +4,8 @@
   "info": {
     "singularName": "player",
     "pluralName": "players",
-    "displayName": "Player"
+    "displayName": "Player",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -13,6 +14,36 @@
   "attributes": {
     "Name": {
       "type": "string"
+    },
+    "trainings": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::training.training",
+      "mappedBy": "players"
+    },
+    "QTTR": {
+      "type": "integer"
+    },
+    "playerlogs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::playerlog.playerlog",
+      "mappedBy": "player"
+    },
+    "dateofbirth": {
+      "type": "date"
+    },
+    "playerlevel": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::playerlevel.playerlevel",
+      "inversedBy": "players"
+    },
+    "teams": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::team.team",
+      "mappedBy": "players"
     }
   }
 }

@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "sequences",
+  "collectionName": "teams",
   "info": {
-    "singularName": "sequence",
-    "pluralName": "sequences",
-    "displayName": "Sequence"
+    "singularName": "team",
+    "pluralName": "teams",
+    "displayName": "Team"
   },
   "options": {
     "draftAndPublish": true
@@ -14,11 +14,11 @@
     "Name": {
       "type": "string"
     },
-    "trainings": {
+    "players": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::training.training",
-      "mappedBy": "sequences"
+      "target": "api::player.player",
+      "inversedBy": "teams"
     }
   }
 }

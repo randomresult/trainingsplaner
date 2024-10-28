@@ -13,6 +13,18 @@
   "attributes": {
     "Name": {
       "type": "string"
+    },
+    "exercise": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::exercise.exercise",
+      "inversedBy": "focusareas"
+    },
+    "playerlog": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::playerlog.playerlog",
+      "inversedBy": "Workedonfocusareas"
     }
   }
 }

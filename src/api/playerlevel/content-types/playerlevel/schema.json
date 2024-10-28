@@ -13,6 +13,18 @@
   "attributes": {
     "Name": {
       "type": "string"
+    },
+    "exercise": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::exercise.exercise",
+      "inversedBy": "playerlevels"
+    },
+    "players": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::player.player",
+      "mappedBy": "playerlevel"
     }
   }
 }

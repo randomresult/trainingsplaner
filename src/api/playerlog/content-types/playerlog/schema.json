@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "playerlogs",
+  "info": {
+    "singularName": "playerlog",
+    "pluralName": "playerlogs",
+    "displayName": "Playerlog",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Date": {
+      "type": "date"
+    },
+    "Note": {
+      "type": "customField",
+      "options": {
+        "preset": "default"
+      },
+      "customField": "plugin::ckeditor5.CKEditor"
+    },
+    "Workedonfocusareas": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::focusarea.focusarea",
+      "mappedBy": "playerlog"
+    },
+    "Trainertable": {
+      "type": "boolean"
+    },
+    "player": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::player.player",
+      "inversedBy": "playerlogs"
+    }
+  }
+}

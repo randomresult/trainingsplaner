@@ -400,7 +400,8 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
 export interface ApiExerciseExercise extends Struct.CollectionTypeSchema {
   collectionName: 'exercises';
   info: {
-    displayName: 'exercise';
+    description: '';
+    displayName: 'Exercise';
     pluralName: 'exercises';
     singularName: 'exercise';
   };
@@ -411,6 +412,24 @@ export interface ApiExerciseExercise extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    Description: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'default';
+        }
+      >;
+    focusareas: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::focusarea.focusarea'
+    >;
+    Hint: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'default';
+        }
+      >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -418,6 +437,10 @@ export interface ApiExerciseExercise extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     Name: Schema.Attribute.String;
+    playerlevels: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::playerlevel.playerlevel'
+    >;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -439,6 +462,7 @@ export interface ApiFocusareaFocusarea extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    exercise: Schema.Attribute.Relation<'manyToOne', 'api::exercise.exercise'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -446,6 +470,10 @@ export interface ApiFocusareaFocusarea extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     Name: Schema.Attribute.String;
+    playerlog: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::playerlog.playerlog'
+    >;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -456,6 +484,7 @@ export interface ApiFocusareaFocusarea extends Struct.CollectionTypeSchema {
 export interface ApiPlayerPlayer extends Struct.CollectionTypeSchema {
   collectionName: 'players';
   info: {
+    description: '';
     displayName: 'Player';
     pluralName: 'players';
     singularName: 'player';
@@ -467,6 +496,7 @@ export interface ApiPlayerPlayer extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    dateofbirth: Schema.Attribute.Date;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -474,7 +504,21 @@ export interface ApiPlayerPlayer extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     Name: Schema.Attribute.String;
+    playerlevel: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::playerlevel.playerlevel'
+    >;
+    playerlogs: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::playerlog.playerlog'
+    >;
     publishedAt: Schema.Attribute.DateTime;
+    QTTR: Schema.Attribute.Integer;
+    teams: Schema.Attribute.Relation<'manyToMany', 'api::team.team'>;
+    trainings: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::training.training'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -495,6 +539,7 @@ export interface ApiPlayerlevelPlayerlevel extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    exercise: Schema.Attribute.Relation<'manyToOne', 'api::exercise.exercise'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -502,10 +547,53 @@ export interface ApiPlayerlevelPlayerlevel extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     Name: Schema.Attribute.String;
+    players: Schema.Attribute.Relation<'oneToMany', 'api::player.player'>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+  };
+}
+
+export interface ApiPlayerlogPlayerlog extends Struct.CollectionTypeSchema {
+  collectionName: 'playerlogs';
+  info: {
+    description: '';
+    displayName: 'Playerlog';
+    pluralName: 'playerlogs';
+    singularName: 'playerlog';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Date: Schema.Attribute.Date;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::playerlog.playerlog'
+    > &
+      Schema.Attribute.Private;
+    Note: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'default';
+        }
+      >;
+    player: Schema.Attribute.Relation<'manyToOne', 'api::player.player'>;
+    publishedAt: Schema.Attribute.DateTime;
+    Trainertable: Schema.Attribute.Boolean;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Workedonfocusareas: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::focusarea.focusarea'
+    >;
   };
 }
 
@@ -531,6 +619,36 @@ export interface ApiSequenceSequence extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     Name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    trainings: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::training.training'
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiTeamTeam extends Struct.CollectionTypeSchema {
+  collectionName: 'teams';
+  info: {
+    displayName: 'Team';
+    pluralName: 'teams';
+    singularName: 'team';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::team.team'> &
+      Schema.Attribute.Private;
+    Name: Schema.Attribute.String;
+    players: Schema.Attribute.Relation<'manyToMany', 'api::player.player'>;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -540,6 +658,7 @@ export interface ApiSequenceSequence extends Struct.CollectionTypeSchema {
 export interface ApiTrainingTraining extends Struct.CollectionTypeSchema {
   collectionName: 'trainings';
   info: {
+    description: '';
     displayName: 'Training';
     pluralName: 'trainings';
     singularName: 'training';
@@ -559,7 +678,12 @@ export interface ApiTrainingTraining extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     Name: Schema.Attribute.String;
+    players: Schema.Attribute.Relation<'manyToMany', 'api::player.player'>;
     publishedAt: Schema.Attribute.DateTime;
+    sequences: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::sequence.sequence'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1076,7 +1200,9 @@ declare module '@strapi/strapi' {
       'api::focusarea.focusarea': ApiFocusareaFocusarea;
       'api::player.player': ApiPlayerPlayer;
       'api::playerlevel.playerlevel': ApiPlayerlevelPlayerlevel;
+      'api::playerlog.playerlog': ApiPlayerlogPlayerlog;
       'api::sequence.sequence': ApiSequenceSequence;
+      'api::team.team': ApiTeamTeam;
       'api::training.training': ApiTrainingTraining;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

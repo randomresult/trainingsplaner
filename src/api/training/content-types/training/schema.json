@@ -4,7 +4,8 @@
   "info": {
     "singularName": "training",
     "pluralName": "trainings",
-    "displayName": "Training"
+    "displayName": "Training",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -16,6 +17,18 @@
     },
     "Date": {
       "type": "date"
+    },
+    "players": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::player.player",
+      "inversedBy": "trainings"
+    },
+    "sequences": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::sequence.sequence",
+      "inversedBy": "trainings"
     }
   }
 }

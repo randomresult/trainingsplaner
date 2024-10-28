@@ -4,7 +4,8 @@
   "info": {
     "singularName": "exercise",
     "pluralName": "exercises",
-    "displayName": "exercise"
+    "displayName": "Exercise",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -13,6 +14,32 @@
   "attributes": {
     "Name": {
       "type": "string"
+    },
+    "Description": {
+      "type": "customField",
+      "options": {
+        "preset": "default"
+      },
+      "customField": "plugin::ckeditor5.CKEditor"
+    },
+    "Hint": {
+      "type": "customField",
+      "options": {
+        "preset": "default"
+      },
+      "customField": "plugin::ckeditor5.CKEditor"
+    },
+    "playerlevels": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::playerlevel.playerlevel",
+      "mappedBy": "exercise"
+    },
+    "focusareas": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::focusarea.focusarea",
+      "mappedBy": "exercise"
     }
   }
 }
