@@ -59,6 +59,9 @@
       "components": [
         "material.racket"
       ]
+    },
+    "firstname": {
+      "type": "string"
     }
   }
 }
