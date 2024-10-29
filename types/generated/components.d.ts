@@ -19,13 +19,28 @@ export interface IrreStep extends Struct.ComponentSchema {
   };
 }
 
+export interface MaterialRacket extends Struct.ComponentSchema {
+  collectionName: 'components_material_rackets';
+  info: {
+    displayName: 'Racket';
+    icon: 'chartBubble';
+  };
+  attributes: {
+    Racket: Schema.Attribute.String;
+    Rubberback: Schema.Attribute.String;
+    Rubberfront: Schema.Attribute.String;
+  };
+}
+
 export interface PlayerlogCompetition extends Struct.ComponentSchema {
   collectionName: 'components_playerlog_competitions';
   info: {
+    description: '';
     displayName: 'Competition';
     icon: 'collapse';
   };
   attributes: {
+    Date: Schema.Attribute.Date;
     Name: Schema.Attribute.String;
     Note: Schema.Attribute.RichText &
       Schema.Attribute.CustomField<
@@ -45,6 +60,7 @@ export interface PlayerlogTrainertable extends Struct.ComponentSchema {
     icon: 'alien';
   };
   attributes: {
+    Date: Schema.Attribute.Date;
     needfocusareas: Schema.Attribute.Relation<
       'oneToMany',
       'api::focusarea.focusarea'
@@ -88,6 +104,7 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'irre.step': IrreStep;
+      'material.racket': MaterialRacket;
       'playerlog.competition': PlayerlogCompetition;
       'playerlog.trainertable': PlayerlogTrainertable;
       'playerlog.trainingscamp': PlayerlogTrainingscamp;

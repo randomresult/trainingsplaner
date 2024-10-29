@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_material_rackets",
+  "info": {
+    "displayName": "Racket",
+    "icon": "chartBubble"
+  },
+  "options": {},
+  "attributes": {
+    "Racket": {
+      "type": "string"
+    },
+    "Rubberfront": {
+      "type": "string"
+    },
+    "Rubberback": {
+      "type": "string"
+    }
+  }
+}

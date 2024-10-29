@@ -2,7 +2,8 @@
   "collectionName": "components_playerlog_competitions",
   "info": {
     "displayName": "Competition",
-    "icon": "collapse"
+    "icon": "collapse",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -15,6 +16,9 @@
         "preset": "default"
       },
       "customField": "plugin::ckeditor5.CKEditor"
+    },
+    "Date": {
+      "type": "date"
     }
   }
 }

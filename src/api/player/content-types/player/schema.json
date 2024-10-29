@@ -52,6 +52,12 @@
         "playerlog.trainertable",
         "playerlog.competition"
       ]
+    },
+    "Material": {
+      "type": "dynamiczone",
+      "components": [
+        "material.racket"
+      ]
     }
   }
 }

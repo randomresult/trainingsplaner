@@ -23,6 +23,9 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::focusarea.focusarea"
+    },
+    "Date": {
+      "type": "date"
     }
   }
 }

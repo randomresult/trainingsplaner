@@ -516,6 +516,7 @@ export interface ApiPlayerPlayer extends Struct.CollectionTypeSchema {
       'api::player.player'
     > &
       Schema.Attribute.Private;
+    Material: Schema.Attribute.DynamicZone<['material.racket']>;
     Name: Schema.Attribute.String;
     playerlevel: Schema.Attribute.Relation<
       'manyToOne',
