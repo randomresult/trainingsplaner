@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_playerlog_trainingscamps",
+  "info": {
+    "displayName": "Trainingscamp",
+    "icon": "command",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "Date": {
+      "type": "date"
+    },
+    "Note": {
+      "type": "customField",
+      "options": {
+        "preset": "default"
+      },
+      "customField": "plugin::ckeditor5.CKEditor"
+    },
+    "Days": {
+      "type": "integer"
+    }
+  }
+}

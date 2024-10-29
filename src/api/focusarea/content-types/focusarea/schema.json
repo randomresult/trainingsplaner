@@ -19,18 +19,6 @@
       "relation": "manyToOne",
       "target": "api::exercise.exercise",
       "inversedBy": "focusareas"
-    },
-    "playerlog": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::playerlog.playerlog",
-      "inversedBy": "Workedonfocusareas"
-    },
-    "playerlogs": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::playerlog.playerlog",
-      "mappedBy": "needworkonfocusarea"
     }
   }
 }

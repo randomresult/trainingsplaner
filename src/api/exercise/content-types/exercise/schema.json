@@ -41,17 +41,29 @@
       "target": "api::focusarea.focusarea",
       "mappedBy": "exercise"
     },
-    "sequences": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::sequence.sequence",
-      "mappedBy": "exercises"
-    },
     "categories": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::category.category",
       "inversedBy": "exercises"
+    },
+    "warmupsequences": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::sequence.sequence",
+      "mappedBy": "warmupexercises"
+    },
+    "techniquesequences": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::sequence.sequence",
+      "mappedBy": "techniqueexercises"
+    },
+    "Steps": {
+      "type": "dynamiczone",
+      "components": [
+        "irre.step"
+      ]
     }
   }
 }

@@ -450,13 +450,18 @@ export interface ApiExerciseExercise extends Struct.CollectionTypeSchema {
       'api::playerlevel.playerlevel'
     >;
     publishedAt: Schema.Attribute.DateTime;
-    sequences: Schema.Attribute.Relation<
+    Steps: Schema.Attribute.DynamicZone<['irre.step']>;
+    techniquesequences: Schema.Attribute.Relation<
       'manyToMany',
       'api::sequence.sequence'
     >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    warmupsequences: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::sequence.sequence'
+    >;
   };
 }
 
@@ -482,14 +487,6 @@ export interface ApiFocusareaFocusarea extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     Name: Schema.Attribute.String;
-    playerlog: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::playerlog.playerlog'
-    >;
-    playerlogs: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::playerlog.playerlog'
-    >;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -524,9 +521,12 @@ export interface ApiPlayerPlayer extends Struct.CollectionTypeSchema {
       'manyToOne',
       'api::playerlevel.playerlevel'
     >;
-    playerlogs: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::playerlog.playerlog'
+    Playerlog: Schema.Attribute.DynamicZone<
+      [
+        'playerlog.trainingscamp',
+        'playerlog.trainertable',
+        'playerlog.competition',
+      ]
     >;
     publishedAt: Schema.Attribute.DateTime;
     QTTR: Schema.Attribute.Integer;
@@ -575,52 +575,6 @@ export interface ApiPlayerlevelPlayerlevel extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiPlayerlogPlayerlog extends Struct.CollectionTypeSchema {
-  collectionName: 'playerlogs';
-  info: {
-    description: '';
-    displayName: 'Playerlog';
-    pluralName: 'playerlogs';
-    singularName: 'playerlog';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    Date: Schema.Attribute.Date;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::playerlog.playerlog'
-    > &
-      Schema.Attribute.Private;
-    needworkonfocusarea: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::focusarea.focusarea'
-    >;
-    Note: Schema.Attribute.RichText &
-      Schema.Attribute.CustomField<
-        'plugin::ckeditor5.CKEditor',
-        {
-          preset: 'default';
-        }
-      >;
-    player: Schema.Attribute.Relation<'manyToOne', 'api::player.player'>;
-    publishedAt: Schema.Attribute.DateTime;
-    Trainertable: Schema.Attribute.Boolean;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    Workedonfocusareas: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::focusarea.focusarea'
-    >;
-  };
-}
-
 export interface ApiSequenceSequence extends Struct.CollectionTypeSchema {
   collectionName: 'sequences';
   info: {
@@ -636,10 +590,6 @@ export interface ApiSequenceSequence extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    exercises: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::exercise.exercise'
-    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -648,6 +598,10 @@ export interface ApiSequenceSequence extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     Name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    techniqueexercises: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::exercise.exercise'
+    >;
     trainings: Schema.Attribute.Relation<
       'manyToMany',
       'api::training.training'
@@ -655,6 +609,10 @@ export interface ApiSequenceSequence extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    warmupexercises: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::exercise.exercise'
+    >;
   };
 }
 
@@ -1259,7 +1217,6 @@ declare module '@strapi/strapi' {
       'api::focusarea.focusarea': ApiFocusareaFocusarea;
       'api::player.player': ApiPlayerPlayer;
       'api::playerlevel.playerlevel': ApiPlayerlevelPlayerlevel;
-      'api::playerlog.playerlog': ApiPlayerlogPlayerlog;
       'api::sequence.sequence': ApiSequenceSequence;
       'api::team.team': ApiTeamTeam;
       'api::training.training': ApiTrainingTraining;

@@ -21,11 +21,17 @@
       "target": "api::training.training",
       "mappedBy": "sequences"
     },
-    "exercises": {
+    "warmupexercises": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::exercise.exercise",
-      "inversedBy": "sequences"
+      "inversedBy": "warmupsequences"
+    },
+    "techniqueexercises": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::exercise.exercise",
+      "inversedBy": "techniquesequences"
     }
   }
 }

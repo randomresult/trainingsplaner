@@ -24,12 +24,6 @@
     "QTTR": {
       "type": "integer"
     },
-    "playerlogs": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::playerlog.playerlog",
-      "mappedBy": "player"
-    },
     "dateofbirth": {
       "type": "date"
     },
@@ -50,6 +44,14 @@
       "relation": "manyToMany",
       "target": "api::traininggroup.traininggroup",
       "mappedBy": "players"
+    },
+    "Playerlog": {
+      "type": "dynamiczone",
+      "components": [
+        "playerlog.trainingscamp",
+        "playerlog.trainertable",
+        "playerlog.competition"
+      ]
     }
   }
 }
