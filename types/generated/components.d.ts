@@ -52,6 +52,24 @@ export interface PlayerlogCompetition extends Struct.ComponentSchema {
   };
 }
 
+export interface PlayerlogManualNote extends Struct.ComponentSchema {
+  collectionName: 'components_playerlog_manual_notes';
+  info: {
+    displayName: 'Manual Note';
+    icon: 'cloud';
+  };
+  attributes: {
+    Date: Schema.Attribute.Date;
+    Note: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'default';
+        }
+      >;
+  };
+}
+
 export interface PlayerlogTrainertable extends Struct.ComponentSchema {
   collectionName: 'components_playerlog_trainertables';
   info: {
@@ -106,6 +124,7 @@ declare module '@strapi/strapi' {
       'irre.step': IrreStep;
       'material.racket': MaterialRacket;
       'playerlog.competition': PlayerlogCompetition;
+      'playerlog.manual-note': PlayerlogManualNote;
       'playerlog.trainertable': PlayerlogTrainertable;
       'playerlog.trainingscamp': PlayerlogTrainingscamp;
     }

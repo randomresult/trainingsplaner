@@ -527,6 +527,7 @@ export interface ApiPlayerPlayer extends Struct.CollectionTypeSchema {
         'playerlog.trainingscamp',
         'playerlog.trainertable',
         'playerlog.competition',
+        'playerlog.manual-note',
       ]
     >;
     publishedAt: Schema.Attribute.DateTime;

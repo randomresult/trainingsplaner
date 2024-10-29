@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_playerlog_manual_notes",
+  "info": {
+    "displayName": "Manual Note",
+    "icon": "cloud"
+  },
+  "options": {},
+  "attributes": {
+    "Date": {
+      "type": "date"
+    },
+    "Note": {
+      "type": "customField",
+      "options": {
+        "preset": "default"
+      },
+      "customField": "plugin::ckeditor5.CKEditor"
+    }
+  }
+}
