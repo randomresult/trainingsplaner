@@ -506,6 +506,7 @@ export interface ApiPlayerPlayer extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
+    Battlebook: Schema.Attribute.DynamicZone<['battlebook.battlebook']>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

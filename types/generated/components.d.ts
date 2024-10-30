@@ -1,5 +1,41 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface BattlebookBattlebook extends Struct.ComponentSchema {
+  collectionName: 'components_battlebook_battlebooks';
+  info: {
+    description: '';
+    displayName: 'Player';
+    icon: 'rocket';
+  };
+  attributes: {
+    Name: Schema.Attribute.String;
+    Note: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'default';
+        }
+      >;
+    Playstyle: Schema.Attribute.Enumeration<
+      [
+        'Defensive',
+        'Offensive',
+        'All-round',
+        'Counter-attacking',
+        'Chopper',
+        'Blocker',
+        'Looper',
+        'Pusher',
+        'Penholder',
+        'Aggressive Topspinner',
+        'Defensive Aggressor',
+      ]
+    > &
+      Schema.Attribute.DefaultTo<'All-round'>;
+    Rubber: Schema.Attribute.Enumeration<['Normal', 'Short Pips', 'Long Pips']>;
+  };
+}
+
 export interface IrreStep extends Struct.ComponentSchema {
   collectionName: 'components_irre_steps';
   info: {
@@ -121,6 +157,7 @@ export interface PlayerlogTrainingscamp extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'battlebook.battlebook': BattlebookBattlebook;
       'irre.step': IrreStep;
       'material.racket': MaterialRacket;
       'playerlog.competition': PlayerlogCompetition;
