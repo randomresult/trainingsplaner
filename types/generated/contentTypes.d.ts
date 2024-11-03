@@ -610,6 +610,10 @@ export interface ApiSequenceSequence extends Struct.CollectionTypeSchema {
       'manyToMany',
       'api::training.training'
     >;
+    trainingtemplates: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::trainingtemplate.trainingtemplate'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -705,6 +709,40 @@ export interface ApiTraininggroupTraininggroup
     Name: Schema.Attribute.String;
     players: Schema.Attribute.Relation<'manyToMany', 'api::player.player'>;
     publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiTrainingtemplateTrainingtemplate
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'trainingtemplates';
+  info: {
+    description: '';
+    displayName: 'Trainingtemplate';
+    pluralName: 'trainingtemplates';
+    singularName: 'trainingtemplate';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::trainingtemplate.trainingtemplate'
+    > &
+      Schema.Attribute.Private;
+    Name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    sequences: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::sequence.sequence'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1225,6 +1263,7 @@ declare module '@strapi/strapi' {
       'api::team.team': ApiTeamTeam;
       'api::training.training': ApiTrainingTraining;
       'api::traininggroup.traininggroup': ApiTraininggroupTraininggroup;
+      'api::trainingtemplate.trainingtemplate': ApiTrainingtemplateTrainingtemplate;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

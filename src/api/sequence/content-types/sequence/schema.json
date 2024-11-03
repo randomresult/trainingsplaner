@@ -32,6 +32,12 @@
       "relation": "manyToMany",
       "target": "api::exercise.exercise",
       "inversedBy": "techniquesequences"
+    },
+    "trainingtemplates": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::trainingtemplate.trainingtemplate",
+      "mappedBy": "sequences"
     }
   }
 }
