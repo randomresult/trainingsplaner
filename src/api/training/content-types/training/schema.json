@@ -29,6 +29,18 @@
       "relation": "manyToMany",
       "target": "api::sequence.sequence",
       "inversedBy": "trainings"
+    },
+    "training_status": {
+      "type": "enumeration",
+      "enum": [
+        "draft",
+        "in_progress",
+        "completed"
+      ],
+      "default": "draft"
+    },
+    "startedAt": {
+      "type": "datetime"
     }
   }
 }
