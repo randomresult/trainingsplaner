@@ -679,6 +679,11 @@ export interface ApiTrainingTraining extends Struct.CollectionTypeSchema {
       'manyToMany',
       'api::sequence.sequence'
     >;
+    startedAt: Schema.Attribute.DateTime;
+    training_status: Schema.Attribute.Enumeration<
+      ['draft', 'in_progress', 'completed']
+    > &
+      Schema.Attribute.DefaultTo<'draft'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
