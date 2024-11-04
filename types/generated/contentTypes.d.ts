@@ -659,7 +659,7 @@ export interface ApiTrainingTraining extends Struct.CollectionTypeSchema {
     singularName: 'training';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
