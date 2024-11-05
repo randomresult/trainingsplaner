@@ -64,6 +64,9 @@
       "relation": "manyToMany",
       "target": "api::trainingtemplate.trainingtemplate",
       "mappedBy": "exercises"
+    },
+    "Minutes": {
+      "type": "integer"
     }
   }
 }

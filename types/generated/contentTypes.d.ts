@@ -444,6 +444,7 @@ export interface ApiExerciseExercise extends Struct.CollectionTypeSchema {
       'api::exercise.exercise'
     > &
       Schema.Attribute.Private;
+    Minutes: Schema.Attribute.Integer;
     Name: Schema.Attribute.String;
     playerlevels: Schema.Attribute.Relation<
       'oneToMany',
