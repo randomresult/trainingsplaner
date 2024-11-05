@@ -2,11 +2,16 @@ services:
   - type: web
     name: trainingsplaner-strapi
     env: node
-    plan: free
-    buildCommand: npm install && npm run build
-    startCommand: npm run start
+    plan: starter
+    region: frankfurt
+    buildCommand: yarn install && yarn build
+    startCommand: rsync -a public/ /data/public/ && yarn start
     healthCheckPath: /_health
     autoDeploy: true
+    disk:
+      mountPath: /data
+      name: strapi-data
+      sizeGB: 1
     envVars:
       - key: ADMIN_JWT_SECRET
         generateValue: true
