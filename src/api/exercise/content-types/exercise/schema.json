@@ -47,23 +47,23 @@
       "target": "api::category.category",
       "inversedBy": "exercises"
     },
-    "warmupsequences": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::sequence.sequence",
-      "mappedBy": "warmupexercises"
-    },
-    "techniquesequences": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::sequence.sequence",
-      "mappedBy": "techniqueexercises"
-    },
     "Steps": {
       "type": "dynamiczone",
       "components": [
         "irre.step"
       ]
+    },
+    "trainings": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::training.training",
+      "mappedBy": "exercises"
+    },
+    "trainingtemplates": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::trainingtemplate.trainingtemplate",
+      "mappedBy": "exercises"
     }
   }
 }

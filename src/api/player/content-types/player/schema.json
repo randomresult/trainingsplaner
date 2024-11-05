@@ -68,6 +68,12 @@
       "components": [
         "battlebook.battlebook"
       ]
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "player"
     }
   }
 }

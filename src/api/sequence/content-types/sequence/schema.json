@@ -14,30 +14,6 @@
   "attributes": {
     "Name": {
       "type": "string"
-    },
-    "trainings": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::training.training",
-      "mappedBy": "sequences"
-    },
-    "warmupexercises": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::exercise.exercise",
-      "inversedBy": "warmupsequences"
-    },
-    "techniqueexercises": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::exercise.exercise",
-      "inversedBy": "techniquesequences"
-    },
-    "trainingtemplates": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::trainingtemplate.trainingtemplate",
-      "mappedBy": "sequences"
     }
   }
 }

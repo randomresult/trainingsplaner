@@ -451,17 +451,17 @@ export interface ApiExerciseExercise extends Struct.CollectionTypeSchema {
     >;
     publishedAt: Schema.Attribute.DateTime;
     Steps: Schema.Attribute.DynamicZone<['irre.step']>;
-    techniquesequences: Schema.Attribute.Relation<
+    trainings: Schema.Attribute.Relation<
       'manyToMany',
-      'api::sequence.sequence'
+      'api::training.training'
+    >;
+    trainingtemplates: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::trainingtemplate.trainingtemplate'
     >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    warmupsequences: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::sequence.sequence'
-    >;
   };
 }
 
@@ -546,6 +546,10 @@ export interface ApiPlayerPlayer extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    user: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
   };
 }
 
@@ -602,25 +606,9 @@ export interface ApiSequenceSequence extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     Name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
-    techniqueexercises: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::exercise.exercise'
-    >;
-    trainings: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::training.training'
-    >;
-    trainingtemplates: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::trainingtemplate.trainingtemplate'
-    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    warmupexercises: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::exercise.exercise'
-    >;
   };
 }
 
@@ -666,6 +654,10 @@ export interface ApiTrainingTraining extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     Date: Schema.Attribute.Date;
+    exercises: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::exercise.exercise'
+    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -675,10 +667,6 @@ export interface ApiTrainingTraining extends Struct.CollectionTypeSchema {
     Name: Schema.Attribute.String;
     players: Schema.Attribute.Relation<'manyToMany', 'api::player.player'>;
     publishedAt: Schema.Attribute.DateTime;
-    sequences: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::sequence.sequence'
-    >;
     startedAt: Schema.Attribute.DateTime;
     training_status: Schema.Attribute.Enumeration<
       ['draft', 'in_progress', 'completed']
@@ -736,6 +724,10 @@ export interface ApiTrainingtemplateTrainingtemplate
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    exercises: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::exercise.exercise'
+    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -744,10 +736,6 @@ export interface ApiTrainingtemplateTrainingtemplate
       Schema.Attribute.Private;
     Name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
-    sequences: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::sequence.sequence'
-    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1205,7 +1193,6 @@ export interface PluginUsersPermissionsUser
   };
   options: {
     draftAndPublish: false;
-    timestamps: true;
   };
   attributes: {
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
@@ -1230,6 +1217,7 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    player: Schema.Attribute.Relation<'oneToOne', 'api::player.player'>;
     provider: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     resetPasswordToken: Schema.Attribute.String & Schema.Attribute.Private;

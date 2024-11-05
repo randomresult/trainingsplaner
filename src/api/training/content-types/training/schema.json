@@ -24,12 +24,6 @@
       "target": "api::player.player",
       "inversedBy": "trainings"
     },
-    "sequences": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::sequence.sequence",
-      "inversedBy": "trainings"
-    },
     "training_status": {
       "type": "enumeration",
       "enum": [
@@ -41,6 +35,12 @@
     },
     "startedAt": {
       "type": "datetime"
+    },
+    "exercises": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::exercise.exercise",
+      "inversedBy": "trainings"
     }
   }
 }

@@ -15,10 +15,10 @@
     "Name": {
       "type": "string"
     },
-    "sequences": {
+    "exercises": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::sequence.sequence",
+      "target": "api::exercise.exercise",
       "inversedBy": "trainingtemplates"
     }
   }
