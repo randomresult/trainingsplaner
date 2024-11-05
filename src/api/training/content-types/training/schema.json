@@ -41,6 +41,13 @@
       "relation": "manyToMany",
       "target": "api::exercise.exercise",
       "inversedBy": "trainings"
+    },
+    "Description": {
+      "type": "customField",
+      "options": {
+        "preset": "default"
+      },
+      "customField": "plugin::ckeditor5.CKEditor"
     }
   }
 }
