@@ -16,23 +16,7 @@ export interface BattlebookBattlebook extends Struct.ComponentSchema {
           preset: 'default';
         }
       >;
-    Playstyle: Schema.Attribute.Enumeration<
-      [
-        'Defensive',
-        'Offensive',
-        'All-round',
-        'Counter-attacking',
-        'Chopper',
-        'Blocker',
-        'Looper',
-        'Pusher',
-        'Penholder',
-        'Aggressive Topspinner',
-        'Defensive Aggressor',
-      ]
-    > &
-      Schema.Attribute.DefaultTo<'All-round'>;
-    Rubber: Schema.Attribute.Enumeration<['Normal', 'Short Pips', 'Long Pips']>;
+    opponent: Schema.Attribute.Relation<'oneToOne', 'api::opponent.opponent'>;
   };
 }
 

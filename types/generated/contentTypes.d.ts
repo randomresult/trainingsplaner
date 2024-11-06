@@ -495,6 +495,64 @@ export interface ApiFocusareaFocusarea extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiOpponentOpponent extends Struct.CollectionTypeSchema {
+  collectionName: 'opponents';
+  info: {
+    description: '';
+    displayName: 'Opponent';
+    pluralName: 'opponents';
+    singularName: 'opponent';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Backhandrubber: Schema.Attribute.Enumeration<
+      ['Normal', 'Short Pips', 'Long Pips']
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Forehandrubber: Schema.Attribute.Enumeration<
+      ['Normal', 'Short Pips', 'Long Pips']
+    >;
+    LinkMyTischtennis: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::opponent.opponent'
+    > &
+      Schema.Attribute.Private;
+    Name: Schema.Attribute.String;
+    Note: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'default';
+        }
+      >;
+    Playstyle: Schema.Attribute.Enumeration<
+      [
+        'Defensive',
+        'Offensive',
+        'All-round',
+        'Counter-attacking',
+        'Chopper',
+        'Blocker',
+        'Looper',
+        'Pusher',
+        'Penholder',
+        'Aggressive Topspinner',
+        'Defensive Aggressor',
+      ]
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiPlayerPlayer extends Struct.CollectionTypeSchema {
   collectionName: 'players';
   info: {
@@ -1258,6 +1316,7 @@ declare module '@strapi/strapi' {
       'api::category.category': ApiCategoryCategory;
       'api::exercise.exercise': ApiExerciseExercise;
       'api::focusarea.focusarea': ApiFocusareaFocusarea;
+      'api::opponent.opponent': ApiOpponentOpponent;
       'api::player.player': ApiPlayerPlayer;
       'api::playerlevel.playerlevel': ApiPlayerlevelPlayerlevel;
       'api::sequence.sequence': ApiSequenceSequence;

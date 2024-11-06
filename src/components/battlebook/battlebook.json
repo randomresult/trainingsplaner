@@ -17,30 +17,10 @@
       },
       "customField": "plugin::ckeditor5.CKEditor"
     },
-    "Rubber": {
-      "type": "enumeration",
-      "enum": [
-        "Normal",
-        "Short Pips",
-        "Long Pips"
-      ]
-    },
-    "Playstyle": {
-      "type": "enumeration",
-      "enum": [
-        "Defensive",
-        "Offensive",
-        "All-round",
-        "Counter-attacking",
-        "Chopper",
-        "Blocker",
-        "Looper",
-        "Pusher",
-        "Penholder",
-        "Aggressive Topspinner",
-        "Defensive Aggressor"
-      ],
-      "default": "All-round"
+    "opponent": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::opponent.opponent"
     }
   }
 }
