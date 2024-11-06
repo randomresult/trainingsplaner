@@ -531,6 +531,7 @@ export interface ApiOpponentOpponent extends Struct.CollectionTypeSchema {
           preset: 'default';
         }
       >;
+    Playhand: Schema.Attribute.Enumeration<['left', 'right']>;
     Playstyle: Schema.Attribute.Enumeration<
       [
         'Defensive',
