@@ -516,6 +516,7 @@ export interface ApiOpponentOpponent extends Struct.CollectionTypeSchema {
     Forehandrubber: Schema.Attribute.Enumeration<
       ['Normal', 'Short Pips', 'Long Pips']
     >;
+    Image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     LinkMyTischtennis: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
