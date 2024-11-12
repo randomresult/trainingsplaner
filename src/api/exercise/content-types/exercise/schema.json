@@ -31,15 +31,15 @@
     },
     "playerlevels": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::playerlevel.playerlevel",
-      "mappedBy": "exercise"
+      "mappedBy": "exercises"
     },
     "focusareas": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::focusarea.focusarea",
-      "mappedBy": "exercise"
+      "mappedBy": "exercises"
     },
     "categories": {
       "type": "relation",

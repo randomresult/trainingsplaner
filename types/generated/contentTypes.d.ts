@@ -438,7 +438,7 @@ export interface ApiExerciseExercise extends Struct.CollectionTypeSchema {
         }
       >;
     focusareas: Schema.Attribute.Relation<
-      'oneToMany',
+      'manyToMany',
       'api::focusarea.focusarea'
     >;
     Hint: Schema.Attribute.RichText &
@@ -457,7 +457,7 @@ export interface ApiExerciseExercise extends Struct.CollectionTypeSchema {
     Minutes: Schema.Attribute.Integer;
     Name: Schema.Attribute.String;
     playerlevels: Schema.Attribute.Relation<
-      'oneToMany',
+      'manyToMany',
       'api::playerlevel.playerlevel'
     >;
     publishedAt: Schema.Attribute.DateTime;
@@ -496,7 +496,10 @@ export interface ApiFocusareaFocusarea extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    exercise: Schema.Attribute.Relation<'manyToOne', 'api::exercise.exercise'>;
+    exercises: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::exercise.exercise'
+    >;
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -648,7 +651,10 @@ export interface ApiPlayerlevelPlayerlevel extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    exercise: Schema.Attribute.Relation<'manyToOne', 'api::exercise.exercise'>;
+    exercises: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::exercise.exercise'
+    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
