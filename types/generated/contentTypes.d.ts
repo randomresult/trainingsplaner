@@ -640,12 +640,13 @@ export interface ApiPlayerPlayer extends Struct.CollectionTypeSchema {
 export interface ApiPlayerlevelPlayerlevel extends Struct.CollectionTypeSchema {
   collectionName: 'playerlevels';
   info: {
+    description: '';
     displayName: 'Playerlevel';
     pluralName: 'playerlevels';
     singularName: 'playerlevel';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
