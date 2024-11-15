@@ -67,6 +67,9 @@
     },
     "Minutes": {
       "type": "integer"
+    },
+    "deleted": {
+      "type": "boolean"
     }
   }
 }
