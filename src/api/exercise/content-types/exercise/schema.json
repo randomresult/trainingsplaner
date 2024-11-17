@@ -70,6 +70,9 @@
     },
     "deleted": {
       "type": "boolean"
+    },
+    "VideoUrl": {
+      "type": "string"
     }
   }
 }
