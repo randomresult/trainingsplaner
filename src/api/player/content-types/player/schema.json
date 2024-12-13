@@ -74,6 +74,9 @@
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user",
       "mappedBy": "player"
+    },
+    "Height": {
+      "type": "integer"
     }
   }
 }

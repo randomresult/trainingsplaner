@@ -598,6 +598,7 @@ export interface ApiPlayerPlayer extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     dateofbirth: Schema.Attribute.Date;
     firstname: Schema.Attribute.String;
+    Height: Schema.Attribute.Integer;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
