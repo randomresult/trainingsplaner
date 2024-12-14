@@ -4,10 +4,11 @@
   "info": {
     "singularName": "match-analysis",
     "pluralName": "match-analyses",
-    "displayName": "match-analysis"
+    "displayName": "match-analysis",
+    "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {

@@ -524,12 +524,13 @@ export interface ApiMatchAnalysisMatchAnalysis
   extends Struct.CollectionTypeSchema {
   collectionName: 'match_analyses';
   info: {
+    description: '';
     displayName: 'match-analysis';
     pluralName: 'match-analyses';
     singularName: 'match-analysis';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
