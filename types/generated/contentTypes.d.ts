@@ -520,6 +520,41 @@ export interface ApiFocusareaFocusarea extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiMatchAnalysisMatchAnalysis
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'match_analyses';
+  info: {
+    displayName: 'match-analysis';
+    pluralName: 'match-analyses';
+    singularName: 'match-analysis';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    finalScore: Schema.Attribute.JSON;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::match-analysis.match-analysis'
+    > &
+      Schema.Attribute.Private;
+    matchHistory: Schema.Attribute.JSON;
+    opponent: Schema.Attribute.Relation<'manyToOne', 'api::opponent.opponent'>;
+    player: Schema.Attribute.Relation<'manyToOne', 'api::player.player'>;
+    publishedAt: Schema.Attribute.DateTime;
+    sets: Schema.Attribute.JSON;
+    timestamp: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    winner: Schema.Attribute.Enumeration<['player', 'opponent']>;
+  };
+}
+
 export interface ApiOpponentOpponent extends Struct.CollectionTypeSchema {
   collectionName: 'opponents';
   info: {
@@ -549,6 +584,10 @@ export interface ApiOpponentOpponent extends Struct.CollectionTypeSchema {
       'api::opponent.opponent'
     > &
       Schema.Attribute.Private;
+    match_analyses: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::match-analysis.match-analysis'
+    >;
     Name: Schema.Attribute.String;
     Note: Schema.Attribute.RichText &
       Schema.Attribute.CustomField<
@@ -605,6 +644,10 @@ export interface ApiPlayerPlayer extends Struct.CollectionTypeSchema {
       'api::player.player'
     > &
       Schema.Attribute.Private;
+    match_analyses: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::match-analysis.match-analysis'
+    >;
     Material: Schema.Attribute.DynamicZone<['material.racket']>;
     Name: Schema.Attribute.String;
     playerlevel: Schema.Attribute.Relation<
@@ -1348,6 +1391,7 @@ declare module '@strapi/strapi' {
       'api::category.category': ApiCategoryCategory;
       'api::exercise.exercise': ApiExerciseExercise;
       'api::focusarea.focusarea': ApiFocusareaFocusarea;
+      'api::match-analysis.match-analysis': ApiMatchAnalysisMatchAnalysis;
       'api::opponent.opponent': ApiOpponentOpponent;
       'api::player.player': ApiPlayerPlayer;
       'api::playerlevel.playerlevel': ApiPlayerlevelPlayerlevel;

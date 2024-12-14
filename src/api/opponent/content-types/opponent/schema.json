@@ -73,6 +73,12 @@
       ],
       "type": "media",
       "multiple": false
+    },
+    "match_analyses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::match-analysis.match-analysis",
+      "mappedBy": "opponent"
     }
   }
 }

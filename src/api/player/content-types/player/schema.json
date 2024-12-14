@@ -77,6 +77,12 @@
     },
     "Height": {
       "type": "integer"
+    },
+    "match_analyses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::match-analysis.match-analysis",
+      "mappedBy": "player"
     }
   }
 }

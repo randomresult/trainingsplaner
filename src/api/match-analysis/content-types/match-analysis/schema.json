@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "match_analyses",
+  "info": {
+    "singularName": "match-analysis",
+    "pluralName": "match-analyses",
+    "displayName": "match-analysis"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "player": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::player.player",
+      "inversedBy": "match_analyses"
+    },
+    "opponent": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::opponent.opponent",
+      "inversedBy": "match_analyses"
+    },
+    "sets": {
+      "type": "json"
+    },
+    "winner": {
+      "type": "enumeration",
+      "enum": [
+        "player",
+        "opponent"
+      ]
+    },
+    "finalScore": {
+      "type": "json"
+    },
+    "timestamp": {
+      "type": "datetime"
+    },
+    "matchHistory": {
+      "type": "json"
+    }
+  }
+}
