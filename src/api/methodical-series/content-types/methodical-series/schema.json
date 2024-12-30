@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "methodical_series",
+  "info": {
+    "singularName": "methodical-series",
+    "pluralName": "methodische-reihen",
+    "displayName": "Methodische Reihe",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "goal": {
+      "type": "text"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "Technik",
+        "Taktik",
+        "Kondition",
+        "Mental"
+      ],
+      "required": true
+    },
+    "exercises": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::exercise.exercise",
+      "mappedBy": "methodicalSeries"
+    },
+    "playerProgresses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::player-progress.player-progress",
+      "mappedBy": "methodicalSeries"
+    }
+  }
+}

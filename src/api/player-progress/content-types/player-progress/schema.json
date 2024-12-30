@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "player_progresses",
+  "info": {
+    "singularName": "player-progress",
+    "pluralName": "player-progresses",
+    "displayName": "Spieler Fortschritt",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "player": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::player.player",
+      "inversedBy": "playerProgresses"
+    },
+    "methodicalSeries": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::methodical-series.methodical-series",
+      "inversedBy": "playerProgresses"
+    },
+    "completedExercises": {
+      "type": "json",
+      "required": true
+    },
+    "lastUpdated": {
+      "type": "datetime"
+    },
+    "notes": {
+      "type": "text"
+    }
+  }
+}

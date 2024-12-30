@@ -1,0 +1,44 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/methodische-reihen",
+      "handler": "methodical-series.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/methodische-reihen/:id",
+      "handler": "methodical-series.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/methodische-reihen",
+      "handler": "methodical-series.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/methodische-reihen/:id",
+      "handler": "methodical-series.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/methodische-reihen/:id",
+      "handler": "methodical-series.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+} 

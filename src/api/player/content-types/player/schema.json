@@ -83,6 +83,12 @@
       "relation": "oneToMany",
       "target": "api::match-analysis.match-analysis",
       "mappedBy": "player"
+    },
+    "playerProgresses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::player-progress.player-progress",
+      "mappedBy": "player"
     }
   }
 }

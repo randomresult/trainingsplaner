@@ -73,6 +73,12 @@
     },
     "VideoUrl": {
       "type": "string"
+    },
+    "methodicalSeries": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::methodical-series.methodical-series",
+      "inversedBy": "exercises"
     }
   }
 }

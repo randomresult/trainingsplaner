@@ -455,6 +455,10 @@ export interface ApiExerciseExercise extends Struct.CollectionTypeSchema {
       'api::exercise.exercise'
     > &
       Schema.Attribute.Private;
+    methodicalSeries: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::methodical-series.methodical-series'
+    >;
     Minutes: Schema.Attribute.Integer;
     Name: Schema.Attribute.String;
     playerlevels: Schema.Attribute.Relation<
@@ -556,6 +560,47 @@ export interface ApiMatchAnalysisMatchAnalysis
   };
 }
 
+export interface ApiMethodicalSeriesMethodicalSeries
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'methodical_series';
+  info: {
+    description: '';
+    displayName: 'Methodische Reihe';
+    pluralName: 'methodische-reihen';
+    singularName: 'methodical-series';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    category: Schema.Attribute.Enumeration<
+      ['Technik', 'Taktik', 'Kondition', 'Mental']
+    > &
+      Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.RichText;
+    exercises: Schema.Attribute.Relation<'oneToMany', 'api::exercise.exercise'>;
+    goal: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::methodical-series.methodical-series'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    playerProgresses: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::player-progress.player-progress'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiOpponentOpponent extends Struct.CollectionTypeSchema {
   collectionName: 'opponents';
   info: {
@@ -620,6 +665,43 @@ export interface ApiOpponentOpponent extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiPlayerProgressPlayerProgress
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'player_progresses';
+  info: {
+    description: '';
+    displayName: 'Spieler Fortschritt';
+    pluralName: 'player-progresses';
+    singularName: 'player-progress';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    completedExercises: Schema.Attribute.JSON & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    lastUpdated: Schema.Attribute.DateTime;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::player-progress.player-progress'
+    > &
+      Schema.Attribute.Private;
+    methodicalSeries: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::methodical-series.methodical-series'
+    >;
+    notes: Schema.Attribute.Text;
+    player: Schema.Attribute.Relation<'manyToOne', 'api::player.player'>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiPlayerPlayer extends Struct.CollectionTypeSchema {
   collectionName: 'players';
   info: {
@@ -662,6 +744,10 @@ export interface ApiPlayerPlayer extends Struct.CollectionTypeSchema {
         'playerlog.competition',
         'playerlog.manual-note',
       ]
+    >;
+    playerProgresses: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::player-progress.player-progress'
     >;
     publishedAt: Schema.Attribute.DateTime;
     QTTR: Schema.Attribute.Integer;
@@ -1393,7 +1479,9 @@ declare module '@strapi/strapi' {
       'api::exercise.exercise': ApiExerciseExercise;
       'api::focusarea.focusarea': ApiFocusareaFocusarea;
       'api::match-analysis.match-analysis': ApiMatchAnalysisMatchAnalysis;
+      'api::methodical-series.methodical-series': ApiMethodicalSeriesMethodicalSeries;
       'api::opponent.opponent': ApiOpponentOpponent;
+      'api::player-progress.player-progress': ApiPlayerProgressPlayerProgress;
       'api::player.player': ApiPlayerPlayer;
       'api::playerlevel.playerlevel': ApiPlayerlevelPlayerlevel;
       'api::sequence.sequence': ApiSequenceSequence;
