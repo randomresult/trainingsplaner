@@ -570,7 +570,7 @@ export interface ApiMethodicalSeriesMethodicalSeries
     singularName: 'methodical-series';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     category: Schema.Attribute.Enumeration<
@@ -675,7 +675,7 @@ export interface ApiPlayerProgressPlayerProgress
     singularName: 'player-progress';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     completedExercises: Schema.Attribute.JSON & Schema.Attribute.Required;
