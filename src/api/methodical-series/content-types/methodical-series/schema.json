@@ -34,7 +34,7 @@
     },
     "exercises": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::exercise.exercise",
       "mappedBy": "methodicalSeries"
     },

@@ -456,7 +456,7 @@ export interface ApiExerciseExercise extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     methodicalSeries: Schema.Attribute.Relation<
-      'manyToOne',
+      'manyToMany',
       'api::methodical-series.methodical-series'
     >;
     Minutes: Schema.Attribute.Integer;
@@ -581,7 +581,10 @@ export interface ApiMethodicalSeriesMethodicalSeries
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.RichText;
-    exercises: Schema.Attribute.Relation<'oneToMany', 'api::exercise.exercise'>;
+    exercises: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::exercise.exercise'
+    >;
     goal: Schema.Attribute.Text;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<

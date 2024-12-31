@@ -76,7 +76,7 @@
     },
     "methodicalSeries": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::methodical-series.methodical-series",
       "inversedBy": "exercises"
     }
