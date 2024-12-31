@@ -689,6 +689,7 @@ export interface ApiPlayerProgressPlayerProgress
       'api::player-progress.player-progress'
     > &
       Schema.Attribute.Private;
+    mastered: Schema.Attribute.Boolean;
     methodicalSeries: Schema.Attribute.Relation<
       'manyToOne',
       'api::methodical-series.methodical-series'
