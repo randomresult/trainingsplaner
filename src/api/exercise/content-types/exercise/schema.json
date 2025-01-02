@@ -79,6 +79,9 @@
       "relation": "manyToMany",
       "target": "api::methodical-series.methodical-series",
       "inversedBy": "exercises"
+    },
+    "approved": {
+      "type": "boolean"
     }
   }
 }

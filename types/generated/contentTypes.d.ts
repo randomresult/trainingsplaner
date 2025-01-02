@@ -423,6 +423,7 @@ export interface ApiExerciseExercise extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    approved: Schema.Attribute.Boolean;
     categories: Schema.Attribute.Relation<
       'manyToMany',
       'api::category.category'
