@@ -411,6 +411,46 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiClubClub extends Struct.CollectionTypeSchema {
+  collectionName: 'clubs';
+  info: {
+    description: '';
+    displayName: 'Club';
+    pluralName: 'clubs';
+    singularName: 'club';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    Address: Schema.Attribute.String;
+    ClubId: Schema.Attribute.UID<'Name'>;
+    ClubStatus: Schema.Attribute.Enumeration<['active', 'inactive']> &
+      Schema.Attribute.DefaultTo<'active'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Email: Schema.Attribute.Email;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::club.club'> &
+      Schema.Attribute.Private;
+    Logo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    Managers: Schema.Attribute.Relation<
+      'manyToMany',
+      'plugin::users-permissions.user'
+    >;
+    Name: Schema.Attribute.String & Schema.Attribute.Required;
+    Opponents: Schema.Attribute.Relation<'oneToMany', 'api::opponent.opponent'>;
+    Players: Schema.Attribute.Relation<'oneToMany', 'api::player.player'>;
+    publishedAt: Schema.Attribute.DateTime;
+    Settings: Schema.Attribute.JSON;
+    Trainings: Schema.Attribute.Relation<'oneToMany', 'api::training.training'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiExerciseExercise extends Struct.CollectionTypeSchema {
   collectionName: 'exercises';
   info: {
@@ -1429,6 +1469,7 @@ export interface PluginUsersPermissionsUser
   };
   attributes: {
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    clubs: Schema.Attribute.Relation<'manyToMany', 'api::club.club'>;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;
     confirmed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     createdAt: Schema.Attribute.DateTime;
@@ -1481,6 +1522,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::category.category': ApiCategoryCategory;
+      'api::club.club': ApiClubClub;
       'api::exercise.exercise': ApiExerciseExercise;
       'api::focusarea.focusarea': ApiFocusareaFocusarea;
       'api::match-analysis.match-analysis': ApiMatchAnalysisMatchAnalysis;

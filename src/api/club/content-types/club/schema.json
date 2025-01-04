@@ -1,0 +1,73 @@
+{
+  "kind": "collectionType",
+  "collectionName": "clubs",
+  "info": {
+    "singularName": "club",
+    "pluralName": "clubs",
+    "displayName": "Club",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string",
+      "required": true
+    },
+    "ClubId": {
+      "type": "uid",
+      "targetField": "Name"
+    },
+    "Address": {
+      "type": "string"
+    },
+    "Logo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "Email": {
+      "type": "email"
+    },
+    "ClubStatus": {
+      "type": "enumeration",
+      "enum": [
+        "active",
+        "inactive"
+      ],
+      "default": "active"
+    },
+    "Settings": {
+      "type": "json"
+    },
+    "Managers": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "clubs"
+    },
+    "Players": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::player.player"
+    },
+    "Trainings": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::training.training"
+    },
+    "Opponents": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::opponent.opponent"
+    }
+  }
+}
