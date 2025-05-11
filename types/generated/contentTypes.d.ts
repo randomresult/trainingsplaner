@@ -444,7 +444,10 @@ export interface ApiClubClub extends Struct.CollectionTypeSchema {
     Players: Schema.Attribute.Relation<'oneToMany', 'api::player.player'>;
     publishedAt: Schema.Attribute.DateTime;
     Settings: Schema.Attribute.JSON;
-    Trainings: Schema.Attribute.Relation<'oneToMany', 'api::training.training'>;
+    trainings: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::training.training'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -916,6 +919,7 @@ export interface ApiTrainingTraining extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
+    clubs: Schema.Attribute.Relation<'manyToMany', 'api::club.club'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

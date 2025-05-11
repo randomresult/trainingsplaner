@@ -59,10 +59,11 @@
       "relation": "oneToMany",
       "target": "api::player.player"
     },
-    "Trainings": {
+    "trainings": {
       "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::training.training"
+      "relation": "manyToMany",
+      "target": "api::training.training",
+      "inversedBy": "clubs"
     },
     "Opponents": {
       "type": "relation",
