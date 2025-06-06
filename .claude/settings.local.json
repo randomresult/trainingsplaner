@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__strapi__strapi_rest",
+      "Bash(npx strapi generate:*)",
+      "Bash(npm run strapi:*)"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "strapi"
+  ]
+}
