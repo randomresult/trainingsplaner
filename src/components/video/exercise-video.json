@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_video_exercise_videos",
+  "info": {
+    "displayName": "Exercise Video",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "headline": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    }
+  }
+}

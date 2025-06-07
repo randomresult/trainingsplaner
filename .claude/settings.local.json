@@ -3,7 +3,13 @@
     "allow": [
       "mcp__strapi__strapi_rest",
       "Bash(npx strapi generate:*)",
-      "Bash(npm run strapi:*)"
+      "Bash(npm run strapi:*)",
+      "mcp__strapi__strapi_list_servers",
+      "mcp__strapi__strapi_get_content_types",
+      "Bash(npm run develop:*)",
+      "Bash(curl:*)",
+      "Bash(pkill:*)",
+      "Bash(true)"
     ]
   },
   "enableAllProjectMcpServers": true,

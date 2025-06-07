@@ -71,8 +71,10 @@
     "deleted": {
       "type": "boolean"
     },
-    "VideoUrl": {
-      "type": "string"
+    "Videos": {
+      "type": "component",
+      "repeatable": true,
+      "component": "video.exercise-video"
     },
     "methodicalSeries": {
       "type": "relation",

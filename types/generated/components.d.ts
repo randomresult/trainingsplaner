@@ -138,6 +138,18 @@ export interface PlayerlogTrainingscamp extends Struct.ComponentSchema {
   };
 }
 
+export interface VideoExerciseVideo extends Struct.ComponentSchema {
+  collectionName: 'components_video_exercise_videos';
+  info: {
+    description: '';
+    displayName: 'Exercise Video';
+  };
+  attributes: {
+    headline: Schema.Attribute.String;
+    url: Schema.Attribute.String;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -148,6 +160,7 @@ declare module '@strapi/strapi' {
       'playerlog.manual-note': PlayerlogManualNote;
       'playerlog.trainertable': PlayerlogTrainertable;
       'playerlog.trainingscamp': PlayerlogTrainingscamp;
+      'video.exercise-video': VideoExerciseVideo;
     }
   }
 }
