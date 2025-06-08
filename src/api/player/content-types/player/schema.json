@@ -89,6 +89,12 @@
       "relation": "oneToMany",
       "target": "api::player-progress.player-progress",
       "mappedBy": "player"
+    },
+    "individualExercises": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::exercise.exercise",
+      "inversedBy": "assignedPlayers"
     }
   }
 }

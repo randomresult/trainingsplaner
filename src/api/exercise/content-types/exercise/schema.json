@@ -84,6 +84,12 @@
     },
     "approved": {
       "type": "boolean"
+    },
+    "assignedPlayers": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::player.player",
+      "mappedBy": "individualExercises"
     }
   }
 }

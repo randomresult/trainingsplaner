@@ -467,6 +467,10 @@ export interface ApiExerciseExercise extends Struct.CollectionTypeSchema {
   };
   attributes: {
     approved: Schema.Attribute.Boolean;
+    assignedPlayers: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::player.player'
+    >;
     categories: Schema.Attribute.Relation<
       'manyToMany',
       'api::category.category'
@@ -769,6 +773,10 @@ export interface ApiPlayerPlayer extends Struct.CollectionTypeSchema {
     dateofbirth: Schema.Attribute.Date;
     firstname: Schema.Attribute.String;
     Height: Schema.Attribute.Integer;
+    individualExercises: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::exercise.exercise'
+    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
