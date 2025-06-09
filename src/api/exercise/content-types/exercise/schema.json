@@ -85,6 +85,10 @@
     "approved": {
       "type": "boolean"
     },
+    "groupOnly": {
+      "type": "boolean",
+      "default": false
+    },
     "assignedPlayers": {
       "type": "relation",
       "relation": "manyToMany",
