@@ -490,6 +490,7 @@ export interface ApiExerciseExercise extends Struct.CollectionTypeSchema {
       'manyToMany',
       'api::focusarea.focusarea'
     >;
+    groupOnly: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     Hint: Schema.Attribute.RichText &
       Schema.Attribute.CustomField<
         'plugin::ckeditor5.CKEditor',
@@ -1492,6 +1493,8 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    firstName: Schema.Attribute.String;
+    lastName: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -1506,6 +1509,7 @@ export interface PluginUsersPermissionsUser
     player: Schema.Attribute.Relation<'oneToOne', 'api::player.player'>;
     provider: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    requestedClub: Schema.Attribute.Relation<'manyToOne', 'api::club.club'>;
     resetPasswordToken: Schema.Attribute.String & Schema.Attribute.Private;
     role: Schema.Attribute.Relation<
       'manyToOne',
