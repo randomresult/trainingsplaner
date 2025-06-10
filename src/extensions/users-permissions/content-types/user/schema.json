@@ -76,6 +76,17 @@
       "relation": "manyToMany",
       "target": "api::club.club",
       "mappedBy": "Managers"
+    },
+    "requestedClub": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::club.club"
+    },
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
     }
   }
 }
