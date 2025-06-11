@@ -100,7 +100,7 @@
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::club.club",
-      "inversedBy": "players"
+      "inversedBy": "Players"
     }
   }
 }
