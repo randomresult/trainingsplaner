@@ -95,6 +95,12 @@
       "relation": "manyToMany",
       "target": "api::exercise.exercise",
       "inversedBy": "assignedPlayers"
+    },
+    "Club": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::club.club",
+      "inversedBy": "players"
     }
   }
 }

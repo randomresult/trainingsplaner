@@ -57,7 +57,8 @@
     "Players": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::player.player"
+      "target": "api::player.player",
+      "mappedBy": "Club"
     },
     "trainings": {
       "type": "relation",
