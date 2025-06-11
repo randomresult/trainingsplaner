@@ -10,5 +10,15 @@ module.exports = {
         middlewares: [],
       },
     },
+    {
+      method: 'PUT',
+      path: '/approve-user/:documentId',
+      handler: 'custom-register.approveUser',
+      config: {
+        auth: true,
+        policies: [],
+        middlewares: [],
+      },
+    },
   ],
 };

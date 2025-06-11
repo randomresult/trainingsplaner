@@ -72,4 +72,51 @@ module.exports = {
       ctx.badRequest('Registration failed', { error: error.message });
     }
   },
+
+  async approveUser(ctx) {
+    const { documentId } = ctx.params;
+    const { confirmed, role, createPlayer, playerData } = ctx.request.body;
+
+    try {
+      console.log('Approving user:', { documentId, confirmed, role, createPlayer });
+
+      // Update user confirmation and role
+      const updatedUser = await strapi.documents('plugin::users-permissions.user').update({
+        documentId: documentId,
+        data: {
+          confirmed: confirmed,
+          role: role
+        }
+      });
+
+      console.log('User updated successfully:', updatedUser);
+
+      // Create player profile if requested
+      if (createPlayer && playerData) {
+        console.log('Creating player profile:', playerData);
+        
+        const playerResponse = await strapi.documents('api::player.player').create({
+          data: {
+            Name: playerData.Name || 'Unbekannt',
+            firstname: playerData.firstname || 'Unbekannt',
+            user: documentId,
+            Club: playerData.Club,
+            publishedAt: new Date().toISOString()
+          }
+        });
+
+        console.log('Player created successfully:', playerResponse);
+      }
+
+      ctx.send({
+        success: true,
+        user: updatedUser,
+        message: 'User approved successfully'
+      });
+
+    } catch (error) {
+      console.error('User approval error:', error);
+      ctx.badRequest('User approval failed', { error: error.message });
+    }
+  },
 };
