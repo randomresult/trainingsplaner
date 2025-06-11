@@ -3,17 +3,23 @@ module.exports = {
     const { email, password, username, clubDocumentId, firstName, lastName } = ctx.request.body;
 
     try {
-      // Step 1: Create user with standard registration
-      const user = await strapi.plugins['users-permissions'].services.user.add({
-        username,
-        email,
-        password,
-        confirmed: false, // Set to false initially
-        firstName,
-        lastName,
-        requestedClub: clubDocumentId,
-        provider: 'local',
+      console.log('Custom registration attempt:', { email, username, firstName, lastName, clubDocumentId });
+
+      // Step 1: Create user with standard registration using Document Service
+      const user = await strapi.documents('plugin::users-permissions.user').create({
+        data: {
+          username,
+          email,
+          password,
+          confirmed: false, // Set to false initially
+          firstName,
+          lastName,
+          requestedClub: clubDocumentId,
+          provider: 'local',
+        }
       });
+
+      console.log('User created:', user);
 
       // Step 2: Generate JWT token
       const jwt = strapi.plugins['users-permissions'].services.jwt.issue({
@@ -33,7 +39,7 @@ module.exports = {
         },
       });
     } catch (error) {
-      strapi.log.error('Custom registration error:', error);
+      console.error('Custom registration error:', error);
       ctx.badRequest('Registration failed', { error: error.message });
     }
   },
