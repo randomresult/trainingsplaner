@@ -79,6 +79,12 @@ module.exports = {
 
     try {
       console.log('Approving user:', { documentId, confirmed, role, createPlayer });
+      
+      // Basic auth check - ensure user is authenticated and has authorization header
+      const authHeader = ctx.request.headers.authorization;
+      if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        return ctx.unauthorized('Missing or invalid authorization header');
+      }
 
       // Update user confirmation and role
       const updatedUser = await strapi.documents('plugin::users-permissions.user').update({

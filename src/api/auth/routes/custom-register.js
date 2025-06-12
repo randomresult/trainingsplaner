@@ -15,9 +15,7 @@ module.exports = {
       path: '/approve-user/:documentId',
       handler: 'custom-register.approveUser',
       config: {
-        auth: {
-          scope: ['authenticated']
-        },
+        auth: false,
         policies: [],
         middlewares: [],
       },
