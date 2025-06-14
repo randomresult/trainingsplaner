@@ -16,11 +16,7 @@
       "type": "string"
     },
     "Note": {
-      "type": "customField",
-      "options": {
-        "preset": "default"
-      },
-      "customField": "plugin::ckeditor5.CKEditor"
+      "type": "richtext"
     },
     "Playstyle": {
       "type": "enumeration",

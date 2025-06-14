@@ -43,11 +43,7 @@
       "inversedBy": "trainings"
     },
     "Description": {
-      "type": "customField",
-      "options": {
-        "preset": "default"
-      },
-      "customField": "plugin::ckeditor5.CKEditor"
+      "type": "richtext"
     },
     "clubs": {
       "type": "relation",
