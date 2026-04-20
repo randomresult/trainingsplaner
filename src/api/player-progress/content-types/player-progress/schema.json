@@ -18,6 +18,23 @@
       "target": "api::player.player",
       "inversedBy": "playerProgresses"
     },
+    "training": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::training.training"
+    },
+    "exercises": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::exercise.exercise"
+    },
+    "pointsEarned": {
+      "type": "integer",
+      "default": 0
+    },
+    "completedAt": {
+      "type": "datetime"
+    },
     "methodicalSeries": {
       "type": "relation",
       "relation": "manyToOne",
@@ -25,8 +42,7 @@
       "inversedBy": "playerProgresses"
     },
     "completedExercises": {
-      "type": "json",
-      "required": true
+      "type": "json"
     },
     "lastUpdated": {
       "type": "datetime"
