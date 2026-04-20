@@ -50,6 +50,12 @@
       "relation": "manyToMany",
       "target": "api::club.club",
       "mappedBy": "trainings"
+    },
+    "completedAt": {
+      "type": "datetime"
+    },
+    "actualDuration": {
+      "type": "integer"
     }
   }
 }
