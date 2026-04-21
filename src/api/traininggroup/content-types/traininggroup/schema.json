@@ -4,7 +4,7 @@
   "info": {
     "singularName": "traininggroup",
     "pluralName": "traininggroups",
-    "displayName": "Traininggroup"
+    "displayName": "Training Group"
   },
   "options": {
     "draftAndPublish": true
