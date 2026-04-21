@@ -8,6 +8,51 @@ const { createCoreController } = require('@strapi/strapi').factories;
 
 module.exports = createCoreController('api::training.training', ({ strapi }) => ({
   /**
+   * DELETE /trainings/:id
+   *
+   * Cascade delete — removes all player-progress entries tied to this
+   * training before deleting the training itself. Runs in a single
+   * transaction so partial failures roll back.
+   */
+  async delete(ctx) {
+    const { id: trainingDocumentId } = ctx.params;
+
+    try {
+      const result = await strapi.db.transaction(async () => {
+        const progressEntries = await strapi
+          .documents('api::player-progress.player-progress')
+          .findMany({
+            filters: { training: { documentId: trainingDocumentId } },
+          });
+
+        for (const entry of progressEntries) {
+          await strapi
+            .documents('api::player-progress.player-progress')
+            .delete({ documentId: entry.documentId });
+        }
+
+        const deletedTraining = await strapi
+          .documents('api::training.training')
+          .delete({ documentId: trainingDocumentId });
+
+        return {
+          training: deletedTraining,
+          deletedProgressCount: progressEntries.length,
+        };
+      });
+
+      ctx.body = {
+        data: {
+          deletedProgressCount: result.deletedProgressCount,
+        },
+      };
+    } catch (err) {
+      strapi.log.error('training.delete cascade failed', err);
+      return ctx.internalServerError(err.message || 'Failed to delete training');
+    }
+  },
+
+  /**
    * POST /trainings/:id/complete
    *
    * Atomically marks a training as completed and creates player-progress
