@@ -43,6 +43,12 @@
       "relation": "oneToMany",
       "target": "api::player-progress.player-progress",
       "mappedBy": "methodicalSeries"
+    },
+    "trainings": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::training.training",
+      "mappedBy": "methodicalSeries"
     }
   }
 }
